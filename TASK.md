@@ -3,7 +3,15 @@
 EcoBike is an innovative player in the market of short-distance transportation solutions. They
 are expanding their business from a traditional shop to a worldwide presence on the internet.
 
-## Abstract
+## Table of Contents
+
+* [Project purpose](#Introduction)
+* [File](#File)
+* [Task](#Task)
+* [Recommendations](#Recommendations)
+* [Scoring](#Scoring)
+
+## Introduction
 
 To expand their business to a worldwide presence, they are asking you 
 to build a barebones software system to help them enable that transition. As they are aware that 
