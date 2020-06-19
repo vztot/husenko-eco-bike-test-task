@@ -22,9 +22,9 @@ I prefer use lombok but in these project equals, getters and setters implemented
 ## For developer
 
 To run this project:
-* Open the project in your IDE (add it as maven project).
-* Add SDK 11 or above in project structure.
-* Run Main class.
+* Open the project in your IDE (add it as maven project)
+* Add SDK 11 or above in project structure
+* Run Main class
 
 ## Author
 
