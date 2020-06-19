@@ -1,4 +1,4 @@
-# husenko-eco-bike-test-task
+# husenko-eco-bike-test-task [![Build Status](https://travis-ci.com/vztot/husenko-eco-bike-test-task.svg?branch=master)](https://travis-ci.com/vztot/husenko-eco-bike-test-task)
 
 ## Project purpose
 
