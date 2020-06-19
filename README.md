@@ -16,6 +16,7 @@ I prefer use lombok but in these project equals, getters and setters implemented
 * Maven
 * Log4j
 * Maven Checkstyle Plugin
+* JUnit
 * Travis CI
 * SonarQube
 
