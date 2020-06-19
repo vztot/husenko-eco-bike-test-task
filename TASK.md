@@ -73,7 +73,8 @@ EcoBike asks you to design and implement a program that:
 * Reads in the file ecobike.txt when starting the program.
 * Write an equals() method for each class (except for the class that contains the main() method).
 * To enable user interaction, please provide a command line interface with System.out.*.
-This interface should look like:
+
+   This interface should look like:
 
 ````
 Please make your choice:
@@ -102,11 +103,12 @@ Price: 875 euros.
 ### Option 2, 3 & 4
 
 Through questions, you ask the user to fill in all the necessary fields that compose either a
-new folding bike (Option 2), a speedelec (Option 3) or an e- bike (Option 4). Use System.in
+new folding bike (Option 2), a speedelec (Option 3), or an e-bike (Option 4). Use System.in
 
 ### Option 5
 
-Implement the search function, which allows you to find the products of a certain type (ebikes, folding bikes and speedelecs) of a given brand and with the given parameters. The list of
+Implement the search function, which allows you to find the products of a certain type
+ (ebikes, folding bikes and speedelecs) of a given brand and with the given parameters. The list of
 parameters can be any from empty (then the search works only by the name of the brand) to the full
 (when all parameters specific to this type of bike are set).
 
@@ -133,8 +135,8 @@ The application stops.
 Some important things to consider for this assignment:
 
 * Think about the usefulness of applying inheritance.
-* When writing to the file `ecobike.txt`, the old version of the file should be overwritten. Maintain
-the format so that your program can read in the file again!
+* When writing to the file `ecobike.txt`, the old version of the file should be overwritten. 
+Maintain the format so that your program can read in the file again!
 * The filename `ecobike.txt` should not be hardcoded in your Java program. Please make sure to let
 the user provide it when starting the program (either as an explicit question to the user or as a
 “command line input”).
@@ -148,7 +150,7 @@ whitespaces, logical identifier names, etc.
 Overview of the composition of your grade:
 
 1. Implementation of all points of the task:
-   * working capacity ( if application is not working - final score = 0 )
+   * working capacity (if application is not working - final score = 0)
    * understood / misunderstood the task
    * percentage of completion
   
