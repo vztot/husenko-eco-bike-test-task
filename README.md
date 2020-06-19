@@ -2,7 +2,7 @@
 
 ## Project purpose
 
-This project is my solution of an [EcoBike](TASK.md) test task.
+This project is my solution of an [EcoBike](doc/TASK.md) test task.
 It implements typical functions of a CRUD application (except for delete). After reading of a text
 file program records data into my simple implementation of a binary tree data structure that was
 made in education and binary search purposes. After this user can view, add and save new bikes
