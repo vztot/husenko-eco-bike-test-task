@@ -5,7 +5,7 @@ are expanding their business from a traditional shop to a worldwide presence on 
 
 ## Table of Contents
 
-* [Project purpose](#Introduction)
+* [Introduction](#Introduction)
 * [File](#File)
 * [Task](#Task)
 * [Recommendations](#Recommendations)
