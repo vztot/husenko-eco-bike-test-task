@@ -122,7 +122,6 @@ The application stops.
 
 ## Recommendations
 
-
 Some important things to consider for this assignment:
 
 * Think about the usefulness of applying inheritance.
