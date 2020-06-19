@@ -78,7 +78,7 @@ Please make your choice:
 7 – Stop the program 
 ````
 
-#### Option 1
+### Option 1
 
 All products are shown on screen in the following format: 
 
@@ -91,12 +91,12 @@ SPEEDELEC Peugeot with 5426 mAh battery and head/tail light.
 Price: 875 euros. 
 ````
 
-#### Option 2, 3 & 4
+### Option 2, 3 & 4
 
 Through questions, you ask the user to fill in all the necessary fields that compose either a
 new folding bike (Option 2), a speedelec (Option 3) or an e- bike (Option 4). Use System.in
 
-#### Option 5
+### Option 5
 
 Implement the search function, which allows you to find the products of a certain type (ebikes, folding bikes and speedelecs) of a given brand and with the given parameters. The list of
 parameters can be any from empty (then the search works only by the name of the brand) to the full
@@ -111,12 +111,12 @@ multithreading so that the application remains responsive during the search.
 Make sure that you do not copy the data structure containing all the products to search for it
 (work on the “original” one) and make sure that new items cannot be added during sorting.
 
-#### Option 6
+### Option 6
 
 The data should be written to file, in the same format so that the application
 can read in the file again!
 
-#### Option 7
+### Option 7
 
 The application stops.
 
