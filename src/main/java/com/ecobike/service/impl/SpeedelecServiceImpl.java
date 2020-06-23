@@ -1,12 +1,13 @@
 package com.ecobike.service.impl;
 
 import com.ecobike.annotation.Inject;
+import com.ecobike.annotation.Service;
 import com.ecobike.dao.SpeedelecDao;
 import com.ecobike.model.Speedelec;
 import com.ecobike.service.SpeedelecService;
-import java.util.Arrays;
 import java.util.List;
 
+@Service
 public class SpeedelecServiceImpl implements SpeedelecService {
 
     @Inject
@@ -25,7 +26,6 @@ public class SpeedelecServiceImpl implements SpeedelecService {
     @Override
     public Speedelec buildEntityFromString(String s) {
         String[] splitData = s.split("; ");
-        System.out.println(Arrays.toString(splitData));
         Speedelec speedelec = new Speedelec();
         speedelec.setBrand(splitData[0].replace("SPEEDELEC ", ""));
         speedelec.setMaximumSpeed(Integer.parseInt(splitData[1]));

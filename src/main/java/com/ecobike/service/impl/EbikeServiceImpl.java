@@ -1,11 +1,13 @@
 package com.ecobike.service.impl;
 
 import com.ecobike.annotation.Inject;
+import com.ecobike.annotation.Service;
 import com.ecobike.dao.EbikeDao;
 import com.ecobike.model.Ebike;
 import com.ecobike.service.EbikeService;
 import java.util.List;
 
+@Service
 public class EbikeServiceImpl implements EbikeService {
 
     @Inject

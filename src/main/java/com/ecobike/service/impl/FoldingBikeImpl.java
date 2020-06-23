@@ -1,11 +1,13 @@
 package com.ecobike.service.impl;
 
 import com.ecobike.annotation.Inject;
+import com.ecobike.annotation.Service;
 import com.ecobike.dao.FoldingBikeDao;
 import com.ecobike.model.FoldingBike;
 import com.ecobike.service.FoldingBikeService;
 import java.util.List;
 
+@Service
 public class FoldingBikeImpl implements FoldingBikeService {
 
     @Inject
