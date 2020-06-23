@@ -1,5 +1,9 @@
 package com.ecobike.model.mapper;
 
-public class FoldingBikeMapper {
+import com.ecobike.model.FoldingBike;
 
+public class FoldingBikeMapper {
+    public static FoldingBike buildFoldingBike(String[] data) {
+        return null;
+    }
 }

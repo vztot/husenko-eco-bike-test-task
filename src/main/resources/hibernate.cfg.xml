@@ -12,7 +12,7 @@
         <property name="show_sql">true</property>
         <property name="hbm2ddl.auto">create-drop</property>
         <mapping class="com.ecobike.model.FoldingBike"/>
-<!--        <mapping class="com.ecobike.model.Speedelec"/>-->
-<!--        <mapping class="com.ecobike.model.Ebike"/>-->
+        <mapping class="com.ecobike.model.Speedelec"/>
+        <mapping class="com.ecobike.model.Ebike"/>
     </session-factory>
 </hibernate-configuration>

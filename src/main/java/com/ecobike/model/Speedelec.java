@@ -135,4 +135,18 @@ public class Speedelec {
         result = 59 * result + batteryCapacity;
         return result;
     }
+
+    @Override
+    public String toString() {
+        return "Speedelec{"
+                + "id=" + id
+                + ", brand='" + brand + '\''
+                + ", weight=" + weight
+                + ", lights=" + lights
+                + ", color='" + color + '\''
+                + ", price=" + price
+                + ", maximumSpeed=" + maximumSpeed
+                + ", batteryCapacity=" + batteryCapacity
+                + '}';
+    }
 }

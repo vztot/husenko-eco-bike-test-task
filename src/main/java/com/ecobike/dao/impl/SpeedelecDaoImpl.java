@@ -1,9 +1,9 @@
 package com.ecobike.dao.impl;
 
 import com.ecobike.annotation.Dao;
-import com.ecobike.dao.FoldingBikeDao;
+import com.ecobike.dao.SpeedelecDao;
 import com.ecobike.exception.DataProcessingException;
-import com.ecobike.model.FoldingBike;
+import com.ecobike.model.Speedelec;
 import com.ecobike.util.HibernateUtil;
 import java.util.List;
 import javax.persistence.criteria.CriteriaQuery;
@@ -12,27 +12,27 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 @Dao
-public class FoldingBikeDaoImpl implements FoldingBikeDao {
+public class SpeedelecDaoImpl implements SpeedelecDao {
 
-    private static final Logger LOGGER = Logger.getLogger(FoldingBikeDaoImpl.class);
+    private static final Logger LOGGER = Logger.getLogger(SpeedelecDaoImpl.class);
 
     @Override
-    public FoldingBike add(FoldingBike foldingBike) {
+    public Speedelec add(Speedelec speedelec) {
         Transaction transaction = null;
         Session session = null;
         try {
             session = HibernateUtil.getSessionFactory().openSession();
             transaction = session.beginTransaction();
-            session.save(foldingBike);
+            session.save(speedelec);
             transaction.commit();
-            return foldingBike;
+            return speedelec;
         } catch (Exception e) {
             if (transaction != null) {
                 transaction.rollback();
             }
-            String msg = "Can't insert foldingBike entity: ";
-            LOGGER.fatal(msg + foldingBike + " " + e);
-            throw new DataProcessingException(msg + foldingBike);
+            String msg = "Can't insert Speedelec entity: ";
+            LOGGER.fatal(msg + speedelec + " " + e);
+            throw new DataProcessingException(msg + speedelec);
         } finally {
             if (session != null) {
                 session.close();
@@ -41,14 +41,14 @@ public class FoldingBikeDaoImpl implements FoldingBikeDao {
     }
 
     @Override
-    public List<FoldingBike> getAll() {
+    public List<Speedelec> getAll() {
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
-            CriteriaQuery<FoldingBike> criteriaQuery = session.getCriteriaBuilder()
-                    .createQuery(FoldingBike.class);
-            criteriaQuery.from(FoldingBike.class);
+            CriteriaQuery<Speedelec> criteriaQuery = session.getCriteriaBuilder()
+                    .createQuery(Speedelec.class);
+            criteriaQuery.from(Speedelec.class);
             return session.createQuery(criteriaQuery).getResultList();
         } catch (Exception e) {
-            String msg = "Can't get all foldingBikes";
+            String msg = "Can't get all Speedelecs";
             LOGGER.fatal(msg);
             throw new DataProcessingException(msg);
         }
