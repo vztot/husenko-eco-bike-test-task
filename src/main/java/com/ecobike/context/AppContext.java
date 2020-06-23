@@ -4,16 +4,16 @@ import com.ecobike.util.Injector;
 import java.util.HashMap;
 import java.util.Map;
 
-public class ApplicationContext {
+public class AppContext {
 
     // custom Application context aka singleton
 
-    private static ApplicationContext ctx;
+    private static AppContext ctx;
 
     private Injector injector;
     private Map<String, Object> services;
 
-    private ApplicationContext() {
+    private AppContext() {
         injector = Injector.getInstance("com.ecobike");
         this.services = new HashMap<>();
     }
@@ -31,9 +31,9 @@ public class ApplicationContext {
         return service;
     }
 
-    public static ApplicationContext getInstance() {
+    public static AppContext getInstance() {
         if (ctx == null) {
-            ctx = new ApplicationContext();
+            ctx = new AppContext();
         }
         return ctx;
     }
