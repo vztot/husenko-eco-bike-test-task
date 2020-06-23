@@ -1,6 +1,5 @@
 package com.ecobike.model;
 
-import java.math.BigDecimal;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -17,7 +16,7 @@ public class Ebike {
     private int weight;
     private boolean lights;
     private String color;
-    private BigDecimal price;
+    private int price;
     private int maximumSpeed;
     private int batteryCapacity;
 
@@ -45,7 +44,7 @@ public class Ebike {
         this.weight = weight;
     }
 
-    public boolean isLights() {
+    public boolean hasLights() {
         return lights;
     }
 
@@ -61,11 +60,11 @@ public class Ebike {
         this.color = color;
     }
 
-    public BigDecimal getPrice() {
+    public int getPrice() {
         return price;
     }
 
-    public void setPrice(BigDecimal price) {
+    public void setPrice(int price) {
         this.price = price;
     }
 
@@ -105,6 +104,9 @@ public class Ebike {
         if (lights != ebike.lights) {
             return false;
         }
+        if (price != ebike.price) {
+            return false;
+        }
         if (maximumSpeed != ebike.maximumSpeed) {
             return false;
         }
@@ -117,10 +119,7 @@ public class Ebike {
         if (brand != null ? !brand.equals(ebike.brand) : ebike.brand != null) {
             return false;
         }
-        if (color != null ? !color.equals(ebike.color) : ebike.color != null) {
-            return false;
-        }
-        return price != null ? price.equals(ebike.price) : ebike.price == null;
+        return color != null ? color.equals(ebike.color) : ebike.color == null;
     }
 
     @Override
@@ -130,7 +129,7 @@ public class Ebike {
         result = 37 * result + weight;
         result = 41 * result + (lights ? 1 : 0);
         result = 43 * result + (color != null ? color.hashCode() : 0);
-        result = 47 * result + (price != null ? price.hashCode() : 0);
+        result = 47 * result + price;
         result = 53 * result + maximumSpeed;
         result = 59 * result + batteryCapacity;
         return result;

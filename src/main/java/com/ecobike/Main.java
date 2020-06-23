@@ -1,47 +1,53 @@
 package com.ecobike;
 
-import com.ecobike.context.ApplicationContext;
-import com.ecobike.dao.EbikeDao;
-import com.ecobike.dao.FoldingBikeDao;
-import com.ecobike.dao.SpeedelecDao;
-import com.ecobike.db.Database;
+import com.ecobike.context.AppContext;
 import com.ecobike.model.Ebike;
 import com.ecobike.model.FoldingBike;
 import com.ecobike.model.Speedelec;
-import java.math.BigDecimal;
+import com.ecobike.service.EbikeService;
+import com.ecobike.service.FoldingBikeService;
+import com.ecobike.service.SpeedelecService;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class Main {
-    private static FoldingBikeDao foldingBikeDao =
-            (FoldingBikeDao) ApplicationContext.getInstance().getService(FoldingBikeDao.class);
-    private static SpeedelecDao speedelecDao =
-            (SpeedelecDao) ApplicationContext.getInstance().getService(SpeedelecDao.class);
-    private static EbikeDao ebikeDao =
-            (EbikeDao) ApplicationContext.getInstance().getService(EbikeDao.class);
+    private static FoldingBikeService foldingBikeService =
+            (FoldingBikeService) AppContext.getInstance().getService(FoldingBikeService.class);
+    private static SpeedelecService speedelecService =
+            (SpeedelecService) AppContext.getInstance().getService(SpeedelecService.class);
+    private static EbikeService ebikeService =
+            (EbikeService) AppContext.getInstance().getService(EbikeService.class);
 
     public static void main(String[] args) {
-        Database db = new Database();
-
-        FoldingBike foldingBike = new FoldingBike();
-        foldingBike.setBrand("GIANT");
-        foldingBike.setColor("BLUE");
-        foldingBike.setLights(true);
-        foldingBike.setNumberOfGears(12);
-        foldingBike.setPrice(new BigDecimal(1000));
-        foldingBike.setWeight(5000);
-        foldingBike.setWheelSize(11);
+        FoldingBike foldingBike1 = new FoldingBike();
+        foldingBike1.setBrand("GIANT");
+        foldingBike1.setColor("BLUE");
+        foldingBike1.setLights(true);
+        foldingBike1.setNumberOfGears(12);
+        foldingBike1.setPrice(1200);
+        foldingBike1.setWeight(5000);
+        foldingBike1.setWheelSize(11);
 
         FoldingBike foldingBike2 = new FoldingBike();
         foldingBike2.setBrand("GIANT2");
         foldingBike2.setColor("BLUE2");
         foldingBike2.setLights(false);
         foldingBike2.setNumberOfGears(13);
-        foldingBike2.setPrice(new BigDecimal(200));
+        foldingBike2.setPrice(900);
         foldingBike2.setWeight(500);
         foldingBike2.setWheelSize(13);
 
-        foldingBikeDao.add(foldingBike);
-        foldingBikeDao.add(foldingBike2);
-        System.out.println(foldingBikeDao.getAll());
+        foldingBikeService.add(foldingBike1);
+        foldingBikeService.add(foldingBike2);
+        List<FoldingBike> foldingBikeList = foldingBikeService.getAll().stream()
+                .map(foldingBikeService::buildStringFromEntity)
+                .map(foldingBikeService::buildEntityFromString)
+                .collect(Collectors.toList());
+
+        foldingBike1.setId(null);
+        foldingBike2.setId(null);
+        System.out.println(foldingBike1.equals(foldingBikeList.get(0)));
+        System.out.println(foldingBike2.equals(foldingBikeList.get(1)));
 
         Speedelec speedelec1 = new Speedelec();
         speedelec1.setBatteryCapacity(5400);
@@ -49,7 +55,7 @@ public class Main {
         speedelec1.setColor("Blue");
         speedelec1.setLights(true);
         speedelec1.setMaximumSpeed(50);
-        speedelec1.setPrice(new BigDecimal(1200));
+        speedelec1.setPrice(800);
         speedelec1.setWeight(7000);
 
         Speedelec speedelec2 = new Speedelec();
@@ -58,12 +64,20 @@ public class Main {
         speedelec2.setColor("RED");
         speedelec2.setLights(true);
         speedelec2.setMaximumSpeed(69);
-        speedelec2.setPrice(new BigDecimal(900));
+        speedelec2.setPrice(1600);
         speedelec2.setWeight(3000);
 
-        speedelecDao.add(speedelec1);
-        speedelecDao.add(speedelec1);
-        System.out.println(speedelecDao.getAll());
+        speedelecService.add(speedelec1);
+        speedelecService.add(speedelec2);
+        List<Speedelec> speedelecList = speedelecService.getAll().stream()
+                .map(speedelecService::buildStringFromEntity)
+                .map(speedelecService::buildEntityFromString)
+                .collect(Collectors.toList());
+
+        speedelec1.setId(null);
+        speedelec2.setId(null);
+        System.out.println(speedelec1.equals(speedelecList.get(0)));
+        System.out.println(speedelec2.equals(speedelecList.get(1)));
 
         Ebike ebike1 = new Ebike();
         ebike1.setBatteryCapacity(5400);
@@ -71,7 +85,7 @@ public class Main {
         ebike1.setColor("Blue");
         ebike1.setLights(true);
         ebike1.setMaximumSpeed(50);
-        ebike1.setPrice(new BigDecimal(1200));
+        ebike1.setPrice(950);
         ebike1.setWeight(7000);
 
         Ebike ebike2 = new Ebike();
@@ -80,11 +94,19 @@ public class Main {
         ebike2.setColor("RED");
         ebike2.setLights(true);
         ebike2.setMaximumSpeed(69);
-        ebike2.setPrice(new BigDecimal(900));
+        ebike2.setPrice(580);
         ebike2.setWeight(3000);
 
-        ebikeDao.add(ebike1);
-        ebikeDao.add(ebike2);
-        System.out.println(ebikeDao.getAll());
+        ebikeService.add(ebike1);
+        ebikeService.add(ebike2);
+        List<Ebike> ebikeList = ebikeService.getAll().stream()
+                .map(ebikeService::buildStringFromEntity)
+                .map(ebikeService::buildEntityFromString)
+                .collect(Collectors.toList());
+
+        ebike1.setId(null);
+        ebike2.setId(null);
+        System.out.println(ebike1.equals(ebikeList.get(0)));
+        System.out.println(ebike2.equals(ebikeList.get(1)));
     }
 }

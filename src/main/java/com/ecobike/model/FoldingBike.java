@@ -1,6 +1,5 @@
 package com.ecobike.model;
 
-import java.math.BigDecimal;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -17,7 +16,7 @@ public class FoldingBike {
     private int weight;
     private boolean lights;
     private String color;
-    private BigDecimal price;
+    private int price;
     private int wheelSize;
     private int numberOfGears;
 
@@ -45,7 +44,7 @@ public class FoldingBike {
         this.weight = weight;
     }
 
-    public boolean isLights() {
+    public boolean hasLights() {
         return lights;
     }
 
@@ -61,11 +60,11 @@ public class FoldingBike {
         this.color = color;
     }
 
-    public BigDecimal getPrice() {
+    public int getPrice() {
         return price;
     }
 
-    public void setPrice(BigDecimal price) {
+    public void setPrice(int price) {
         this.price = price;
     }
 
@@ -97,30 +96,30 @@ public class FoldingBike {
             return false;
         }
 
-        FoldingBike folding = (FoldingBike) o;
+        FoldingBike foldingBike = (FoldingBike) o;
 
-        if (weight != folding.weight) {
+        if (weight != foldingBike.weight) {
             return false;
         }
-        if (lights != folding.lights) {
+        if (lights != foldingBike.lights) {
             return false;
         }
-        if (wheelSize != folding.wheelSize) {
+        if (price != foldingBike.price) {
             return false;
         }
-        if (numberOfGears != folding.numberOfGears) {
+        if (wheelSize != foldingBike.wheelSize) {
             return false;
         }
-        if (id != null ? !id.equals(folding.id) : folding.id != null) {
+        if (numberOfGears != foldingBike.numberOfGears) {
             return false;
         }
-        if (brand != null ? !brand.equals(folding.brand) : folding.brand != null) {
+        if (id != null ? !id.equals(foldingBike.id) : foldingBike.id != null) {
             return false;
         }
-        if (color != null ? !color.equals(folding.color) : folding.color != null) {
+        if (brand != null ? !brand.equals(foldingBike.brand) : foldingBike.brand != null) {
             return false;
         }
-        return price != null ? price.equals(folding.price) : folding.price == null;
+        return color != null ? color.equals(foldingBike.color) : foldingBike.color == null;
     }
 
     @Override
@@ -130,7 +129,7 @@ public class FoldingBike {
         result = 37 * result + weight;
         result = 41 * result + (lights ? 1 : 0);
         result = 43 * result + (color != null ? color.hashCode() : 0);
-        result = 47 * result + (price != null ? price.hashCode() : 0);
+        result = 47 * result + price;
         result = 53 * result + wheelSize;
         result = 59 * result + numberOfGears;
         return result;
