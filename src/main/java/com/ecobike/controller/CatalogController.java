@@ -47,7 +47,7 @@ public class CatalogController {
 
         System.out.println("    1 - Show all catalog\n"
                 + "    2 - Show folding bikes\n"
-                + "    3 - Show e-speedelecs\n"
+                + "    3 - Show speedelecs\n"
                 + "    4 - Show e-bikes");
 
         String answer = new Scanner(System.in).nextLine();

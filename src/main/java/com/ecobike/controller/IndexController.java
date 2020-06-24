@@ -21,11 +21,11 @@ import org.apache.log4j.Logger;
 @Controller
 public class IndexController {
     public static String pathToFile = "file/ecobike.txt";
+    public static List<String> newLines;
     private static final Logger LOGGER = Logger.getLogger(IndexController.class);
     private static final Map<Integer, Command> COMMAND_MAP;
     // switching between controllers made by using command pattern
     private static List<String> lines;
-    private static List<String> newLines;
     private FoldingBikeService foldingBikeService =
             (FoldingBikeService) AppContext.getInstance().getService(FoldingBikeService.class);
     private EbikeService ebikeService =
@@ -39,13 +39,13 @@ public class IndexController {
             new CatalogController();
         });
         map.put(2, () -> {
-            new AddNewBikeController("FOLDING BIKE");
+            new AddNewBikeController("FOLDING BIKE", newLines);
         });
         map.put(3, () -> {
-            new AddNewBikeController("SPEEDELEC");
+            new AddNewBikeController("SPEEDELEC", newLines);
         });
         map.put(4, () -> {
-            new AddNewBikeController("E-BIKE");
+            new AddNewBikeController("E-BIKE", newLines);
         });
         map.put(5, () -> {
             new SearchController();
