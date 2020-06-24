@@ -22,7 +22,7 @@ public class Test {
         FoldingBike foldingBike1 = new FoldingBike();
         foldingBike1.setBrand("GIANT");
         foldingBike1.setColor("BLUE");
-        foldingBike1.setLights(true);
+        foldingBike1.setLights(false);
         foldingBike1.setNumberOfGears(12);
         foldingBike1.setPrice(1200);
         foldingBike1.setWeight(5000);
@@ -53,7 +53,7 @@ public class Test {
         speedelec1.setBatteryCapacity(5400);
         speedelec1.setBrand("Speedelec Brand one");
         speedelec1.setColor("Blue");
-        speedelec1.setLights(true);
+        speedelec1.setLights(false);
         speedelec1.setMaximumSpeed(50);
         speedelec1.setPrice(800);
         speedelec1.setWeight(7000);
@@ -62,7 +62,7 @@ public class Test {
         speedelec2.setBatteryCapacity(6800);
         speedelec2.setBrand("Speedelec Brand two");
         speedelec2.setColor("RED");
-        speedelec2.setLights(true);
+        speedelec2.setLights(false);
         speedelec2.setMaximumSpeed(69);
         speedelec2.setPrice(1600);
         speedelec2.setWeight(3000);
@@ -83,7 +83,7 @@ public class Test {
         ebike1.setBatteryCapacity(5400);
         ebike1.setBrand("Ebike Brand one");
         ebike1.setColor("Blue");
-        ebike1.setLights(true);
+        ebike1.setLights(false);
         ebike1.setMaximumSpeed(50);
         ebike1.setPrice(950);
         ebike1.setWeight(7000);
@@ -92,7 +92,7 @@ public class Test {
         ebike2.setBatteryCapacity(6800);
         ebike2.setBrand("Ebike Brand two");
         ebike2.setColor("RED");
-        ebike2.setLights(true);
+        ebike2.setLights(false);
         ebike2.setMaximumSpeed(69);
         ebike2.setPrice(580);
         ebike2.setWeight(3000);
@@ -108,5 +108,9 @@ public class Test {
         ebike2.setId(null);
         System.out.println(ebike1.equals(ebikeList.get(0)));
         System.out.println(ebike2.equals(ebikeList.get(1)));
+
+        System.out.println(ebike1.toCatalogString());
+        System.out.println(foldingBike1.toCatalogString());
+        System.out.println(speedelec1.toCatalogString());
     }
 }

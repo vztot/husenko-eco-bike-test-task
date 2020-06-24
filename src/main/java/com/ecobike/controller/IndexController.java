@@ -10,6 +10,7 @@ import com.ecobike.service.FoldingBikeService;
 import com.ecobike.service.SpeedelecService;
 import com.ecobike.util.FileUtil;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
@@ -23,8 +24,8 @@ public class IndexController {
     private static final Logger LOGGER = Logger.getLogger(IndexController.class);
     private static final Map<Integer, Command> COMMAND_MAP;
     // switching between controllers made by using command pattern
-    private static int oldSize;
     private static List<String> lines;
+    private static List<String> newLines;
     private FoldingBikeService foldingBikeService =
             (FoldingBikeService) AppContext.getInstance().getService(FoldingBikeService.class);
     private EbikeService ebikeService =
@@ -53,7 +54,7 @@ public class IndexController {
             new WriteToFileController();
         });
         map.put(7, () -> {
-            new ExitController(lines, oldSize);
+            new ExitController(newLines);
         });
         COMMAND_MAP = Collections.unmodifiableMap(map);
     }
@@ -65,7 +66,7 @@ public class IndexController {
             getPathToFile(new Scanner(System.in));
         }
         lines = FileUtil.read(pathToFile);
-        oldSize = lines.size();
+        newLines = new ArrayList<>();
 
         for (String line : lines) {
             switch (line.charAt(0)) {
@@ -88,7 +89,7 @@ public class IndexController {
                 }
             }
         }
-
+        lines = null; // for gc
         System.out.println("File was loaded successfully!");
     }
 
@@ -99,7 +100,6 @@ public class IndexController {
             if (scanner.hasNextLine()) {
                 String input = scanner.nextLine();
                 Integer command = null;
-
                 try {
                     command = Integer.parseInt(input);
                 } catch (Exception e) {

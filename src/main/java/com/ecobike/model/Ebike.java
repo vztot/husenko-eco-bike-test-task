@@ -148,4 +148,9 @@ public class Ebike {
                 + ", batteryCapacity=" + batteryCapacity
                 + '}';
     }
+
+    public String toCatalogString() {
+        return "EBIKE " + brand + " with " + batteryCapacity + " mAh battery and "
+                + (lights ? "" : "no") + " head/tail light.\nPrice: " + price + " euros.";
+    }
 }

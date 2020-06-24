@@ -148,4 +148,9 @@ public class Speedelec {
                 + ", batteryCapacity=" + batteryCapacity
                 + '}';
     }
+
+    public String toCatalogString() {
+        return "SPEEDELEC " + brand + " with " + batteryCapacity + " mAh battery and "
+                + (lights ? "" : "no") + " head/tail light.\nPrice: " + price + " euros.";
+    }
 }
