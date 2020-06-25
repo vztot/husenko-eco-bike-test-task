@@ -6,6 +6,7 @@ import com.ecobike.service.EbikeService;
 import com.ecobike.service.FoldingBikeService;
 import com.ecobike.service.SpeedelecService;
 import com.ecobike.util.OutputUtil;
+import dnl.utils.text.table.TextTable;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
@@ -45,10 +46,15 @@ public class CatalogController {
                 .collect(Collectors.toList());
         Collections.shuffle(all);
 
-        System.out.println("    1 - Show all catalog\n"
-                + "    2 - Show folding bikes\n"
-                + "    3 - Show speedelecs\n"
-                + "    4 - Show e-bikes");
+        TextTable table = new TextTable(new String[]{"#", "Description"}, new String[][]
+                {
+                        {"1", "Show all catalog"},
+                        {"2", "Show all folding bikes"},
+                        {"3", "Show all speedelecs"},
+                        {"4", "Show all e-bikes"},
+                });
+        table.printTable();
+        System.out.println();
 
         String answer = new Scanner(System.in).nextLine();
 

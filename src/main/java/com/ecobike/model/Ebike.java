@@ -153,6 +153,6 @@ public class Ebike {
 
     public String toCatalogString() {
         return "EBIKE " + brand + " with " + batteryCapacity + " mAh battery and "
-                + (lights ? "" : "no") + " head/tail light.\nPrice: " + price + " euros.";
+                + (lights ? "" : "no") + " head/tail light. Price: " + price + " euros.";
     }
 }

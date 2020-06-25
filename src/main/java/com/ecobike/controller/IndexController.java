@@ -9,6 +9,7 @@ import com.ecobike.service.EbikeService;
 import com.ecobike.service.FoldingBikeService;
 import com.ecobike.service.SpeedelecService;
 import com.ecobike.util.FileUtil;
+import dnl.utils.text.table.TextTable;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -24,7 +25,6 @@ public class IndexController {
     public static List<String> newLines;
     private static final Logger LOGGER = Logger.getLogger(IndexController.class);
     private static final Map<Integer, Command> COMMAND_MAP;
-    // switching between controllers made by using command pattern
     private static List<String> lines;
     private FoldingBikeService foldingBikeService =
             (FoldingBikeService) AppContext.getInstance().getService(FoldingBikeService.class);
@@ -48,7 +48,7 @@ public class IndexController {
             new AddNewBikeController("E-BIKE", newLines);
         });
         map.put(5, () -> {
-            new SearchController();
+            new SearchIndexController();
         });
         map.put(6, () -> {
             new WriteToFileController();
@@ -117,15 +117,19 @@ public class IndexController {
     }
 
     private void drawMenu() {
-        System.out.println(
-                "\nPlease make your choice:\n"
-                        + "   1 - Show the entire EcoBike catalog\n"
-                        + "   2 – Add a new folding bike\n"
-                        + "   3 – Add a new speedelec\n"
-                        + "   4 – Add a new e-bike\n"
-                        + "   5 – Find the first item of a particular brand\n"
-                        + "   6 – Write to file\n"
-                        + "   7 – Stop the program");
+        System.out.println("Please make your choice:");
+        TextTable table = new TextTable(new String[]{"#", "Description"}, new String[][]
+                {
+                        {"1", "Show the entire EcoBike catalog"},
+                        {"2", "Add a new folding bike"},
+                        {"3", "Add a new speedelec"},
+                        {"4", "Add a new e-bike"},
+                        {"5", "Find the first item of a particular brand"},
+                        {"6", "Write to file"},
+                        {"7", "Stop the program"},
+                });
+        table.printTable();
+        System.out.println();
     }
 
     private void getPathToFile(Scanner scanner) {

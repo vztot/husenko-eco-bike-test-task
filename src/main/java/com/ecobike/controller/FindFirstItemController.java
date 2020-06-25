@@ -1,59 +1,61 @@
 package com.ecobike.controller;
 
-import com.ecobike.annotation.Controller;
+import com.ecobike.annotation.Service;
 import com.ecobike.context.AppContext;
 import com.ecobike.model.FoldingBike;
-import com.ecobike.service.EbikeService;
-import com.ecobike.service.FoldingBikeService;
 import com.ecobike.service.SearchService;
-import com.ecobike.service.SpeedelecService;
 import com.ecobike.util.OutputUtil;
 import com.ecobike.util.ValidateUtil;
+import dnl.utils.text.table.TextTable;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Scanner;
 import java.util.stream.Collectors;
 
-@Controller
-public class SearchController {
-    private FoldingBikeService foldingBikeService =
-            (FoldingBikeService) AppContext.getInstance().getService(FoldingBikeService.class);
-    private EbikeService ebikeService =
-            (EbikeService) AppContext.getInstance().getService(EbikeService.class);
-    private SpeedelecService speedelecService =
-            (SpeedelecService) AppContext.getInstance().getService(SpeedelecService.class);
+@Service
+public class FindFirstItemController {
     private SearchService searchService =
             (SearchService) AppContext.getInstance().getService(SearchService.class);
-    private String bikeType;
 
-    public SearchController() {
-        System.out.println("Select type of a bike you would like to search: \n"
-                + "    1 - Folding bike\n"
-                + "    2 - Speedelec\n"
-                + "    3 - E-bike");
-        while (bikeType == null) {
-            String ans = new Scanner(System.in).nextLine();
-            if (ans.equals("1") || ans.equals("2") || ans.equals("3")) {
-                bikeType = ans;
+    public FindFirstItemController() {
+        drawMenu();
+        String ans = "";
+        String bikeType = "";
+        while (!ans.equals("1") || !ans.equals("2") || !ans.equals("3") || !ans.equals("4")) {
+            ans = new Scanner(System.in).nextLine();
+            switch (ans) {
+                case "1": {
+                    searchFoldingBike();
+                    return;
+                }
+                case "2": {
+                    searchSpeedelec();
+                    return;
+                }
+                case "3": {
+                    searchEbike();
+                    return;
+                }
+                case "4": {
+                    return;
+                }
+                default: {
+                }
             }
         }
-        switch (bikeType) {
-            case "1": {
-                searchFoldingBike();
-                break;
-            }
-            case "2": {
-                searchSpeedelec();
-                break;
-            }
-            case "3": {
-                searchEbike();
-                break;
-            }
-            default: {
+    }
 
-            }
-        }
+    private void drawMenu() {
+        TextTable table = new TextTable(new String[]{"#", "Select type of a bike you would like "
+                + "to search:"}, new String[][]
+                {
+                        {"1", "Folding bike"},
+                        {"2", "Speedelec"},
+                        {"3", "E-bike"},
+                        {"4", "Back"},
+                });
+        table.printTable();
+        System.out.println();
     }
 
     private void searchFoldingBike() {
@@ -100,9 +102,11 @@ public class SearchController {
             System.out.println("Entered data are not valid.");
         }
 
-        System.out.println("Controller: " + foldingBike);
-        OutputUtil.soutListWithPages(searchService.searchFoldingBike(foldingBike).stream().map(e
-                -> e.toCatalogString()).collect(Collectors.toList()));
+        System.out.println("Parameters: " + foldingBike);
+        OutputUtil.soutListWithPages(searchService.searchFoldingBike(foldingBike).stream()
+                .limit(1)
+                .map(e -> e.toCatalogString())
+                .collect(Collectors.toList()));
     }
 
     private void searchSpeedelec() {

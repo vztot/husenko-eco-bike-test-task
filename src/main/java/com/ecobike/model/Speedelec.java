@@ -153,6 +153,6 @@ public class Speedelec {
 
     public String toCatalogString() {
         return "SPEEDELEC " + brand + " with " + batteryCapacity + " mAh battery and "
-                + (lights ? "" : "no") + " head/tail light.\nPrice: " + price + " euros.";
+                + (lights ? "" : "no") + " head/tail light. Price: " + price + " euros.";
     }
 }

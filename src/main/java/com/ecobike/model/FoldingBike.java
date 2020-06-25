@@ -152,6 +152,6 @@ public class FoldingBike {
 
     public String toCatalogString() {
         return "FOLDING BIKE " + brand + " with " + numberOfGears + " gear(s) and "
-                + (lights ? "" : "no") + " head/tail light.\nPrice: " + price + " euros.";
+                + (lights ? "" : "no") + " head/tail light. Price: " + price + " euros.";
     }
 }
