@@ -11,6 +11,7 @@ import com.ecobike.service.SpeedelecService;
 import com.ecobike.util.ValidateUtil;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
@@ -34,228 +35,157 @@ public class AddNewBikeController {
         Map<String, Command> map = new HashMap<>();
         map.put("FOLDING BIKE", () -> {
             FoldingBike foldingBike = buildFoldingBikeFromUserInput();
-            String entityString = foldingBikeService.buildStringFromEntity(
-                    foldingBikeService.add(foldingBike));
-            System.out.println(entityString);
-            IndexController.newLines.add(entityString);
-            System.out.println("Bike was added successfully.");
+            if (foldingBike != null) {
+                String entityString = foldingBikeService.buildStringFromEntity(
+                        foldingBikeService.add(foldingBike));
+                System.out.println(entityString);
+                IndexController.newLines.add(entityString);
+                System.out.println("Bike was added successfully.");
+            }
         });
         map.put("SPEEDELEC", () -> {
             Speedelec speedelec = buildSpeedelecFromUserInput();
-            String entityString = speedelecService.buildStringFromEntity(
-                    speedelecService.add(speedelec));
-            System.out.println(entityString);
-            IndexController.newLines.add(entityString);
-            System.out.println("Bike was added successfully.");
+            if (speedelec != null) {
+                String entityString = speedelecService.buildStringFromEntity(
+                        speedelecService.add(speedelec));
+                System.out.println(entityString);
+                IndexController.newLines.add(entityString);
+                System.out.println("Bike was added successfully.");
+            }
         });
         map.put("E-BIKE", () -> {
             Ebike ebike = buildEbikeFromUserInput();
-            String entityString = ebikeService.buildStringFromEntity(
-                    ebikeService.add(ebike));
-            System.out.println(entityString);
-            IndexController.newLines.add(entityString);
-            System.out.println("Bike was added successfully.");
+            if (ebike != null) {
+                String entityString = ebikeService.buildStringFromEntity(
+                        ebikeService.add(ebike));
+                System.out.println(entityString);
+                IndexController.newLines.add(entityString);
+                System.out.println("Bike was added successfully.");
+            }
         });
         COMMAND_MAP = Collections.unmodifiableMap(map);
     }
 
     private static Ebike buildEbikeFromUserInput() {
-        String brand = null;
-        Integer maxSpeed = null;
-        Integer weight = null;
-        Boolean lights = false;
-        Integer batteryCapacity = null;
-        String color = null;
-        Integer price = null;
+        Map<String, String> meta = new LinkedHashMap<>() {
+            {
+                put("brand", null);
+                put("maxSpeed", null);
+                put("weight", null);
+                put("lights", null);
+                put("batteryCapacity", null);
+                put("color", null);
+                put("price", null);
+            }
+        };
 
-        while (price == null) {
-            String ans = null;
-            if (brand == null) {
-                System.out.println("Please enter brand:");
-                brand = new Scanner(System.in).nextLine();
-            }
-            if (maxSpeed == null) {
-                System.out.println("Please enter max Speed:");
-                ans = new Scanner(System.in).nextLine();
-                if (ValidateUtil.validateStringIsNumber(ans)) {
-                    maxSpeed = Integer.parseInt(ans);
+        meta.forEach((key, value) -> {
+            while (meta.get(key) == null) {
+                System.out.println("Please enter " + key);
+                String ans = new Scanner(System.in).nextLine();
+                if (ValidateUtil.validateStringNotEmpty(ans)
+                        || ValidateUtil.validateStringIsBoolean(ans)
+                        || ValidateUtil.validateStringIsNumber(ans)) {
+                    meta.put(key, ans);
                 }
             }
-            if (weight == null) {
-                System.out.println("Please enter weight:");
-                ans = new Scanner(System.in).nextLine();
-                if (ValidateUtil.validateStringIsNumber(ans)) {
-                    weight = Integer.parseInt(ans);
-                }
-            }
-            if (lights == null) {
-                System.out.println("Does bike has head/tail light? (true/false):");
-                ans = new Scanner(System.in).nextLine();
-                if (ValidateUtil.validateStringIsBoolean(ans)) {
-                    lights = Boolean.parseBoolean(ans);
-                }
-            }
-            if (batteryCapacity == null) {
-                System.out.println("Please enter battery capacity:");
-                ans = new Scanner(System.in).nextLine();
-                if (ValidateUtil.validateStringIsNumber(ans)) {
-                    batteryCapacity = Integer.parseInt(ans);
-                }
-            }
-            if (color == null) {
-                System.out.println("Please enter color:");
-                ans = new Scanner(System.in).nextLine();
-                color = ans;
-            }
-            if (price == null) {
-                System.out.println("Please enter price:");
-                ans = new Scanner(System.in).nextLine();
-                if (ValidateUtil.validateStringIsNumber(ans)) {
-                    price = Integer.parseInt(ans);
-                }
-            }
-        }
+        });
+
         Ebike ebike = new Ebike();
-        ebike.setBrand(brand);
-        ebike.setMaximumSpeed(maxSpeed);
-        ebike.setWeight(weight);
-        ebike.setLights(lights);
-        ebike.setBatteryCapacity(batteryCapacity);
-        ebike.setColor(color);
-        ebike.setPrice(price);
+        try {
+            ebike.setBrand(meta.get("brand"));
+            ebike.setMaximumSpeed(Integer.parseInt(meta.get("maxSpeed")));
+            ebike.setWeight(Integer.parseInt(meta.get("weight")));
+            ebike.setLights(meta.get("lights").equalsIgnoreCase("true"));
+            ebike.setBatteryCapacity(Integer.parseInt(meta.get("batteryCapacity")));
+            ebike.setColor(meta.get("color"));
+            ebike.setPrice(Integer.parseInt(meta.get("price")));
+        } catch (Exception e) {
+            System.out.println("Entered data is not valid.");
+            return null;
+        }
         return ebike;
     }
 
     private static Speedelec buildSpeedelecFromUserInput() {
-        String brand = null;
-        Integer maxSpeed = null;
-        Integer weight = null;
-        Boolean lights = false;
-        Integer batteryCapacity = null;
-        String color = null;
-        Integer price = null;
+        Map<String, String> meta = new LinkedHashMap<>() {
+            {
+                put("brand", null);
+                put("maxSpeed", null);
+                put("weight", null);
+                put("lights", null);
+                put("batteryCapacity", null);
+                put("color", null);
+                put("price", null);
+            }
+        };
 
-        while (price == null) {
-            String ans = null;
-            if (brand == null) {
-                System.out.println("Please enter brand:");
-                brand = new Scanner(System.in).nextLine();
-            }
-            if (maxSpeed == null) {
-                System.out.println("Please enter max Speed:");
-                ans = new Scanner(System.in).nextLine();
-                if (ValidateUtil.validateStringIsNumber(ans)) {
-                    maxSpeed = Integer.parseInt(ans);
+        meta.forEach((key, value) -> {
+            while (meta.get(key) == null) {
+                System.out.println("Please enter " + key);
+                String ans = new Scanner(System.in).nextLine();
+                if (ValidateUtil.validateStringNotEmpty(ans)
+                        || ValidateUtil.validateStringIsBoolean(ans)
+                        || ValidateUtil.validateStringIsNumber(ans)) {
+                    meta.put(key, ans);
                 }
             }
-            if (weight == null) {
-                System.out.println("Please enter weight:");
-                ans = new Scanner(System.in).nextLine();
-                if (ValidateUtil.validateStringIsNumber(ans)) {
-                    weight = Integer.parseInt(ans);
-                }
-            }
-            if (lights == null) {
-                System.out.println("Does bike has head/tail light? (true/false):");
-                ans = new Scanner(System.in).nextLine();
-                if (ValidateUtil.validateStringIsBoolean(ans)) {
-                    lights = Boolean.parseBoolean(ans);
-                }
-            }
-            if (batteryCapacity == null) {
-                System.out.println("Please enter battery capacity:");
-                ans = new Scanner(System.in).nextLine();
-                if (ValidateUtil.validateStringIsNumber(ans)) {
-                    batteryCapacity = Integer.parseInt(ans);
-                }
-            }
-            if (color == null) {
-                System.out.println("Please enter color:");
-                ans = new Scanner(System.in).nextLine();
-                color = ans;
-            }
-            if (price == null) {
-                System.out.println("Please enter price:");
-                ans = new Scanner(System.in).nextLine();
-                if (ValidateUtil.validateStringIsNumber(ans)) {
-                    price = Integer.parseInt(ans);
-                }
-            }
-        }
+        });
+
         Speedelec speedelec = new Speedelec();
-        speedelec.setBrand(brand);
-        speedelec.setMaximumSpeed(maxSpeed);
-        speedelec.setWeight(weight);
-        speedelec.setLights(lights);
-        speedelec.setBatteryCapacity(batteryCapacity);
-        speedelec.setColor(color);
-        speedelec.setPrice(price);
+        try {
+            speedelec.setBrand(meta.get("brand"));
+            speedelec.setMaximumSpeed(Integer.parseInt(meta.get("maxSpeed")));
+            speedelec.setWeight(Integer.parseInt(meta.get("weight")));
+            speedelec.setLights(meta.get("lights").equalsIgnoreCase("true"));
+            speedelec.setBatteryCapacity(Integer.parseInt(meta.get("batteryCapacity")));
+            speedelec.setColor(meta.get("color"));
+            speedelec.setPrice(Integer.parseInt(meta.get("price")));
+        } catch (Exception e) {
+            System.out.println("Entered data is not valid.");
+            return null;
+        }
         return speedelec;
     }
 
     private static FoldingBike buildFoldingBikeFromUserInput() {
-        String brand = null;
-        Integer wheelSize = null;
-        Integer numOfGears = null;
-        Integer weight = null;
-        Boolean lights = false;
-        String color = null;
-        Integer price = null;
-        while (price == null) {
-            String ans = null;
-            if (brand == null) {
-                System.out.println("Please enter brand:");
-                brand = new Scanner(System.in).nextLine();
+        Map<String, String> meta = new LinkedHashMap<>() {
+            {
+                put("brand", null);
+                put("wheelSize", null);
+                put("numberOfGears", null);
+                put("weight", null);
+                put("lights", null);
+                put("color", null);
+                put("price", null);
             }
-            if (wheelSize == null) {
-                System.out.println("Please enter wheel size:");
-                ans = new Scanner(System.in).nextLine();
-                if (ValidateUtil.validateStringIsNumber(ans)) {
-                    wheelSize = Integer.parseInt(ans);
+        };
+
+        meta.forEach((key, value) -> {
+            while (meta.get(key) == null) {
+                System.out.println("Please enter " + key);
+                String ans = new Scanner(System.in).nextLine();
+                if (ValidateUtil.validateStringNotEmpty(ans)
+                        || ValidateUtil.validateStringIsBoolean(ans)
+                        || ValidateUtil.validateStringIsNumber(ans)) {
+                    meta.put(key, ans);
                 }
             }
-            if (numOfGears == null) {
-                System.out.println("Please enter count of gears:");
-                ans = new Scanner(System.in).nextLine();
-                if (ValidateUtil.validateStringIsNumber(ans)) {
-                    numOfGears = Integer.parseInt(ans);
-                }
-            }
-            if (weight == null) {
-                System.out.println("Please enter weight:");
-                ans = new Scanner(System.in).nextLine();
-                if (ValidateUtil.validateStringIsNumber(ans)) {
-                    weight = Integer.parseInt(ans);
-                }
-            }
-            if (lights == null) {
-                System.out.println("Does bike has head/tail light? (true/false):");
-                ans = new Scanner(System.in).nextLine();
-                if (ValidateUtil.validateStringIsBoolean(ans)) {
-                    lights = Boolean.parseBoolean(ans);
-                }
-            }
-            if (color == null) {
-                System.out.println("Please enter color:");
-                ans = new Scanner(System.in).nextLine();
-                color = ans;
-            }
-            if (price == null) {
-                System.out.println("Please enter price:");
-                ans = new Scanner(System.in).nextLine();
-                if (ValidateUtil.validateStringIsNumber(ans)) {
-                    price = Integer.parseInt(ans);
-                }
-            }
-        }
+        });
+
         FoldingBike foldingBike = new FoldingBike();
-        foldingBike.setBrand(brand);
-        foldingBike.setWheelSize(wheelSize);
-        foldingBike.setNumberOfGears(numOfGears);
-        foldingBike.setWeight(weight);
-        foldingBike.setLights(lights);
-        foldingBike.setColor(color);
-        foldingBike.setPrice(price);
+
+        try {
+            foldingBike.setBrand(meta.get("brand"));
+            foldingBike.setWheelSize(Integer.valueOf(meta.get("wheelSize")));
+            foldingBike.setNumberOfGears(Integer.valueOf(meta.get("numberOfGears")));
+            foldingBike.setWeight(Integer.valueOf(meta.get("weight")));
+            foldingBike.setLights(meta.get("lights").equalsIgnoreCase("true"));
+            foldingBike.setColor(meta.get("color"));
+            foldingBike.setPrice(Integer.valueOf(meta.get("price")));
+        } catch (Exception e) {
+            System.out.println("Entered data is not valid.");
+        }
         return foldingBike;
     }
 

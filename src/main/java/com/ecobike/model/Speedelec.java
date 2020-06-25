@@ -13,12 +13,12 @@ public class Speedelec {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String brand;
-    private int weight;
-    private boolean lights;
+    private Integer weight;
+    private Boolean lights;
     private String color;
-    private int price;
-    private int maximumSpeed;
-    private int batteryCapacity;
+    private Integer price;
+    private Integer maximumSpeed;
+    private Integer batteryCapacity;
 
     public Long getId() {
         return id;
@@ -36,19 +36,19 @@ public class Speedelec {
         this.brand = brand;
     }
 
-    public int getWeight() {
+    public Integer getWeight() {
         return weight;
     }
 
-    public void setWeight(int weight) {
+    public void setWeight(Integer weight) {
         this.weight = weight;
     }
 
-    public boolean hasLights() {
+    public Boolean hasLights() {
         return lights;
     }
 
-    public void setLights(boolean lights) {
+    public void setLights(Boolean lights) {
         this.lights = lights;
     }
 
@@ -60,27 +60,27 @@ public class Speedelec {
         this.color = color;
     }
 
-    public int getPrice() {
+    public Integer getPrice() {
         return price;
     }
 
-    public void setPrice(int price) {
+    public void setPrice(Integer price) {
         this.price = price;
     }
 
-    public int getMaximumSpeed() {
+    public Integer getMaximumSpeed() {
         return maximumSpeed;
     }
 
-    public void setMaximumSpeed(int maximumSpeed) {
+    public void setMaximumSpeed(Integer maximumSpeed) {
         this.maximumSpeed = maximumSpeed;
     }
 
-    public int getBatteryCapacity() {
+    public Integer getBatteryCapacity() {
         return batteryCapacity;
     }
 
-    public void setBatteryCapacity(int batteryCapacity) {
+    public void setBatteryCapacity(Integer batteryCapacity) {
         this.batteryCapacity = batteryCapacity;
     }
 
@@ -98,40 +98,42 @@ public class Speedelec {
 
         Speedelec speedelec = (Speedelec) o;
 
-        if (weight != speedelec.weight) {
-            return false;
-        }
-        if (lights != speedelec.lights) {
-            return false;
-        }
-        if (price != speedelec.price) {
-            return false;
-        }
-        if (maximumSpeed != speedelec.maximumSpeed) {
-            return false;
-        }
-        if (batteryCapacity != speedelec.batteryCapacity) {
-            return false;
-        }
         if (id != null ? !id.equals(speedelec.id) : speedelec.id != null) {
             return false;
         }
         if (brand != null ? !brand.equals(speedelec.brand) : speedelec.brand != null) {
             return false;
         }
-        return color != null ? color.equals(speedelec.color) : speedelec.color == null;
+        if (weight != null ? !weight.equals(speedelec.weight) : speedelec.weight != null) {
+            return false;
+        }
+        if (lights != null ? !lights.equals(speedelec.lights) : speedelec.lights != null) {
+            return false;
+        }
+        if (color != null ? !color.equals(speedelec.color) : speedelec.color != null) {
+            return false;
+        }
+        if (price != null ? !price.equals(speedelec.price) : speedelec.price != null) {
+            return false;
+        }
+        if (maximumSpeed != null ? !maximumSpeed.equals(speedelec.maximumSpeed)
+                : speedelec.maximumSpeed != null) {
+            return false;
+        }
+        return batteryCapacity != null ? batteryCapacity.equals(speedelec.batteryCapacity)
+                : speedelec.batteryCapacity == null;
     }
 
     @Override
     public int hashCode() {
         int result = id != null ? id.hashCode() : 0;
         result = 31 * result + (brand != null ? brand.hashCode() : 0);
-        result = 37 * result + weight;
-        result = 41 * result + (lights ? 1 : 0);
+        result = 37 * result + (weight != null ? weight.hashCode() : 0);
+        result = 41 * result + (lights != null ? lights.hashCode() : 0);
         result = 43 * result + (color != null ? color.hashCode() : 0);
-        result = 47 * result + price;
-        result = 53 * result + maximumSpeed;
-        result = 59 * result + batteryCapacity;
+        result = 47 * result + (price != null ? price.hashCode() : 0);
+        result = 53 * result + (maximumSpeed != null ? maximumSpeed.hashCode() : 0);
+        result = 59 * result + (batteryCapacity != null ? batteryCapacity.hashCode() : 0);
         return result;
     }
 

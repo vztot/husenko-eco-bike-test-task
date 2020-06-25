@@ -13,12 +13,12 @@ public class FoldingBike {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String brand;
-    private int weight;
-    private boolean lights;
+    private Integer weight;
+    private Boolean lights;
     private String color;
-    private int price;
-    private int wheelSize;
-    private int numberOfGears;
+    private Integer price;
+    private Integer wheelSize;
+    private Integer numberOfGears;
 
     public Long getId() {
         return id;
@@ -36,19 +36,19 @@ public class FoldingBike {
         this.brand = brand;
     }
 
-    public int getWeight() {
+    public Integer getWeight() {
         return weight;
     }
 
-    public void setWeight(int weight) {
+    public void setWeight(Integer weight) {
         this.weight = weight;
     }
 
-    public boolean hasLights() {
+    public Boolean hasLights() {
         return lights;
     }
 
-    public void setLights(boolean lights) {
+    public void setLights(Boolean lights) {
         this.lights = lights;
     }
 
@@ -60,27 +60,27 @@ public class FoldingBike {
         this.color = color;
     }
 
-    public int getPrice() {
+    public Integer getPrice() {
         return price;
     }
 
-    public void setPrice(int price) {
+    public void setPrice(Integer price) {
         this.price = price;
     }
 
-    public int getWheelSize() {
+    public Integer getWheelSize() {
         return wheelSize;
     }
 
-    public void setWheelSize(int wheelSize) {
+    public void setWheelSize(Integer wheelSize) {
         this.wheelSize = wheelSize;
     }
 
-    public int getNumberOfGears() {
+    public Integer getNumberOfGears() {
         return numberOfGears;
     }
 
-    public void setNumberOfGears(int numberOfGears) {
+    public void setNumberOfGears(Integer numberOfGears) {
         this.numberOfGears = numberOfGears;
     }
 
@@ -96,42 +96,43 @@ public class FoldingBike {
             return false;
         }
 
-        FoldingBike foldingBike = (FoldingBike) o;
+        FoldingBike that = (FoldingBike) o;
 
-        if (weight != foldingBike.weight) {
+        if (id != null ? !id.equals(that.id) : that.id != null) {
             return false;
         }
-        if (lights != foldingBike.lights) {
+        if (brand != null ? !brand.equals(that.brand) : that.brand != null) {
             return false;
         }
-        if (price != foldingBike.price) {
+        if (weight != null ? !weight.equals(that.weight) : that.weight != null) {
             return false;
         }
-        if (wheelSize != foldingBike.wheelSize) {
+        if (lights != null ? !lights.equals(that.lights) : that.lights != null) {
             return false;
         }
-        if (numberOfGears != foldingBike.numberOfGears) {
+        if (color != null ? !color.equals(that.color) : that.color != null) {
             return false;
         }
-        if (id != null ? !id.equals(foldingBike.id) : foldingBike.id != null) {
+        if (price != null ? !price.equals(that.price) : that.price != null) {
             return false;
         }
-        if (brand != null ? !brand.equals(foldingBike.brand) : foldingBike.brand != null) {
+        if (wheelSize != null ? !wheelSize.equals(that.wheelSize) : that.wheelSize != null) {
             return false;
         }
-        return color != null ? color.equals(foldingBike.color) : foldingBike.color == null;
+        return numberOfGears != null ? numberOfGears.equals(that.numberOfGears)
+                : that.numberOfGears == null;
     }
 
     @Override
     public int hashCode() {
         int result = id != null ? id.hashCode() : 0;
         result = 31 * result + (brand != null ? brand.hashCode() : 0);
-        result = 37 * result + weight;
-        result = 41 * result + (lights ? 1 : 0);
+        result = 37 * result + (weight != null ? weight.hashCode() : 0);
+        result = 41 * result + (lights != null ? lights.hashCode() : 0);
         result = 43 * result + (color != null ? color.hashCode() : 0);
-        result = 47 * result + price;
-        result = 53 * result + wheelSize;
-        result = 59 * result + numberOfGears;
+        result = 47 * result + (price != null ? price.hashCode() : 0);
+        result = 53 * result + (wheelSize != null ? wheelSize.hashCode() : 0);
+        result = 59 * result + (numberOfGears != null ? numberOfGears.hashCode() : 0);
         return result;
     }
 

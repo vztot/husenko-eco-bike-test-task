@@ -13,6 +13,7 @@ public class WriteToFileController {
             if (string.equalsIgnoreCase("yes")) {
                 FileUtil.writeAppend(IndexController.pathToFile, IndexController.newLines);
                 IndexController.newLines.clear();
+                System.out.println("Data successfully saved.");
             }
         } else {
             System.out.println("You don't have unsaved data.");

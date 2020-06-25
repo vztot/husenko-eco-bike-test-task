@@ -11,11 +11,11 @@ public class ValidateUtil {
     }
 
     public static boolean validateStringIsBoolean(String string) {
-        try {
-            Boolean.parseBoolean(string);
-        } catch (Exception e) {
-            return false;
-        }
-        return true;
+        return string != null && (string.equalsIgnoreCase("true")
+                || string.equalsIgnoreCase("false"));
+    }
+
+    public static boolean validateStringNotEmpty(String string) {
+        return string != null && !string.equals("");
     }
 }
