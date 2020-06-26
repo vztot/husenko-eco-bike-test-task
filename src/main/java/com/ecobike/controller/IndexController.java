@@ -133,7 +133,7 @@ public class IndexController {
                         {"2", "Add a new folding bike"},
                         {"3", "Add a new speedelec"},
                         {"4", "Add a new e-bike"},
-                        {"5", "Find the first item of a particular brand"},
+                        {"5", "Search"},
                         {"6", "Write to file"},
                         {"7", "Stop the program"},
                 });
