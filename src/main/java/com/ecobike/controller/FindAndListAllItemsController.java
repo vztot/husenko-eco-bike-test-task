@@ -1,5 +1,6 @@
 package com.ecobike.controller;
 
+import com.ecobike.annotation.Controller;
 import com.ecobike.context.AppContext;
 import com.ecobike.model.Ebike;
 import com.ecobike.model.FoldingBike;
@@ -13,6 +14,7 @@ import java.util.Map;
 import java.util.Scanner;
 import java.util.stream.Collectors;
 
+@Controller
 public class FindAndListAllItemsController {
     private SearchService searchService =
             (SearchService) AppContext.getInstance().getService(SearchService.class);
