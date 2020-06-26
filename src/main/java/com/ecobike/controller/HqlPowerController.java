@@ -29,8 +29,8 @@ public class HqlPowerController {
     }
 
     private void drawMenu() {
-        System.out.println("Enter HQL query. Results will be in \"raw\" format (\"exit\" for " +
-                "exit)");
+        System.out.println("Enter HQL query. Results will be in \"raw\" format (\"exit\" for "
+                + "exit)");
         TextTable table = new TextTable(new String[]{"Examples:"}, new String[][]
                 {
                         {"FROM FoldingBike WHERE price>1000"},
