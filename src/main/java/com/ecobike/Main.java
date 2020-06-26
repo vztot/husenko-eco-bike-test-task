@@ -1,7 +1,13 @@
 package com.ecobike;
 
+import com.ecobike.controller.IndexController;
+
 public class Main {
-    public String getGreetings() {
-        return "Мы будем трудиться на благо города и всех харьковчан!";
+
+    public static void main(String[] args) {
+        System.out.println("Welcome to Ecobike test task!\n");
+        IndexController indexController = new IndexController();
+        indexController.init();
+        indexController.service();
     }
 }

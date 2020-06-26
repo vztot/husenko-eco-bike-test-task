@@ -3,18 +3,20 @@
 ## Project purpose
 
 This project is my solution of an [EcoBike](doc/TASK.md) test task.
-It implements typical functions of a CRUD application (except for delete). After reading of a text
-file program records data into my simple implementation of a binary tree data structure that was
-made in education and binary search purposes. After this user can view, add and save new bikes
-using console interface. Also, project has dao, service and view layers, IoC (implemented by
-the custom injector), unit tests, travis and sonar qube code testing tools. Also, in practice
-I prefer use lombok but in these project equals, getters and setters implemented manually.
+It implements some typical functions of a CRUD application. After reading a text
+file program records data into H2 sql in-memory db using Hibernate. After this user can view, add
+ and save new bikes using JPA. Also, project has dao, service and view layers, IoC (implemented
+  by the custom injector), unit tests, travis and sonar qube code testing tools. Also, in
+   practice I prefer use lombok but in these project equals, hashcode, getters and setters
+    implemented manually.
 
 ## Project structure
 
 * Java 11
 * Maven
 * Log4j
+* H2 (in memory database)
+* Hibernate
 * Maven Checkstyle Plugin
 * JUnit
 * Travis CI
@@ -25,6 +27,7 @@ I prefer use lombok but in these project equals, getters and setters implemented
 To run this project:
 * Open the project in your IDE (add it as maven project)
 * Add SDK 11 or above in project structure
+* Change log4j.properties file for your system
 * Run Main class
 
 ## Author
