@@ -20,12 +20,32 @@ public class SearchServiceImpl implements SearchService {
     }
 
     @Override
+    public List<FoldingBike> searchFirstFoldingBike(FoldingBike foldingBike) {
+        return searchDao.searchFirstFoldingBike(foldingBike);
+    }
+
+    @Override
     public List<Speedelec> searchSpeedelec(Speedelec speedelec) {
         return searchDao.searchSpeedelec(speedelec);
     }
 
     @Override
+    public List<Speedelec> searchFirstSpeedelec(Speedelec speedelec) {
+        return searchDao.searchFirstSpeedelec(speedelec);
+    }
+
+    @Override
     public List<Ebike> searchEbike(Ebike ebike) {
         return searchDao.searchEbike(ebike);
+    }
+
+    @Override
+    public List<Ebike> searchFirstEbike(Ebike ebike) {
+        return searchDao.searchFirstEbike(ebike);
+    }
+
+    @Override
+    public List<Object> executeHql(String query) {
+        return searchDao.executeHql(query);
     }
 }

@@ -8,7 +8,15 @@ import java.util.List;
 public interface SearchService {
     List<FoldingBike> searchFoldingBike(FoldingBike foldingBike);
 
+    List<FoldingBike> searchFirstFoldingBike(FoldingBike foldingBike);
+
     List<Speedelec> searchSpeedelec(Speedelec speedelec);
 
+    List<Speedelec> searchFirstSpeedelec(Speedelec speedelec);
+
     List<Ebike> searchEbike(Ebike ebike);
+
+    List<Ebike> searchFirstEbike(Ebike ebike);
+
+    List<Object> executeHql(String query);
 }

@@ -6,9 +6,17 @@ import com.ecobike.model.Speedelec;
 import java.util.List;
 
 public interface SearchDao {
-    List<FoldingBike> searchFoldingBike(FoldingBike foldingBike);
+    List<FoldingBike> searchFirstFoldingBike(FoldingBike foldingBike);
 
     List<Speedelec> searchSpeedelec(Speedelec speedelec);
 
     List<Ebike> searchEbike(Ebike ebike);
+
+    List<Ebike> searchFirstEbike(Ebike ebike);
+
+    List<FoldingBike> searchFoldingBike(FoldingBike foldingBike);
+
+    List<Speedelec> searchFirstSpeedelec(Speedelec speedelec);
+
+    List<Object> executeHql(String query);
 }

@@ -11,6 +11,7 @@ public class FileUtilTest {
         List<String> expected = List.of("the", "quick", "brown", "fox", "jumps", "over", "the",
                 "lazy", "dog");
         List<String> actual = FileUtil.read("src/test/resources/read_test.txt");
+
         assertEquals(expected, actual);
     }
 

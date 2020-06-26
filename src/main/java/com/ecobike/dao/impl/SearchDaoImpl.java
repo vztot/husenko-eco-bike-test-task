@@ -7,6 +7,7 @@ import com.ecobike.model.Ebike;
 import com.ecobike.model.FoldingBike;
 import com.ecobike.model.Speedelec;
 import com.ecobike.util.HibernateUtil;
+import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -18,8 +19,10 @@ public class SearchDaoImpl implements SearchDao {
 
     @Override
     public List<FoldingBike> searchFoldingBike(FoldingBike foldingBike) {
+        System.out.println("Parameters: " + foldingBike);
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
-            String hql = "FROM FoldingBike";
+            String hql = "FROM FoldingBike" + buildFoldingBikeQuery(foldingBike);
+            System.out.println("HQL: " + hql);
             Query query = session.createQuery(hql);
             List<FoldingBike> bikes = query.list();
             return bikes;
@@ -28,62 +31,169 @@ public class SearchDaoImpl implements SearchDao {
         }
     }
 
-    private String buildFoldingBikeQuery(FoldingBike foldingBike) {
-        StringBuilder sb = new StringBuilder("FROM FoldingBike");
-
-        Map<String, String> meta = new LinkedHashMap<>() {
-            {
-                put("brand", foldingBike.getBrand());
-                put("wheelSize", foldingBike.getBrand());
-                put("numberOfGears", foldingBike.getBrand());
-                put("lights", foldingBike.getBrand());
-                put("weight", foldingBike.getBrand());
-                put("color", foldingBike.getBrand());
-                put("price", foldingBike.getBrand());
-            }
-        };
-        if (foldingBike.getBrand() != null
-                || foldingBike.getWheelSize() != null
-                || foldingBike.getNumberOfGears() != null
-                || foldingBike.hasLights() != null
-                || foldingBike.getWeight() != null
-                || foldingBike.getColor() != null
-                || foldingBike.getPrice() != null) {
-            sb.append(" WHERE ");
+    @Override
+    public List<FoldingBike> searchFirstFoldingBike(FoldingBike foldingBike) {
+        System.out.println("Parameters: " + foldingBike);
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            String hql = "FROM FoldingBike" + buildFoldingBikeQuery(foldingBike);
+            System.out.println("HQL: " + hql);
+            Query query = session.createQuery(hql).setMaxResults(1);
+            List<FoldingBike> bikes = query.list();
+            return bikes;
+        } catch (Exception e) {
+            throw new DataProcessingException("Unable to get foldingBike");
         }
-
-        if (foldingBike.getBrand() != null) {
-            sb.append("brand='").append(foldingBike.getBrand()).append("'");
-        }
-        if (foldingBike.getWheelSize() != null) {
-            sb.append("wheelSize='").append(foldingBike.getBrand()).append("'");
-        }
-        if (foldingBike.getNumberOfGears() != null) {
-            sb.append("brand ='").append(foldingBike.getBrand()).append("'");
-        }
-        if (foldingBike.getBrand() != null) {
-            sb.append("brand ='").append(foldingBike.getBrand()).append("'");
-        }
-        if (foldingBike.getBrand() != null) {
-            sb.append("brand ='").append(foldingBike.getBrand()).append("'");
-        }
-        if (foldingBike.getBrand() != null) {
-            sb.append("brand ='").append(foldingBike.getBrand()).append("'");
-        }
-        if (foldingBike.getBrand() != null) {
-            sb.append("brand ='").append(foldingBike.getBrand()).append("'");
-        }
-
-        return sb.toString();
     }
 
     @Override
     public List<Speedelec> searchSpeedelec(Speedelec speedelec) {
-        return null;
+        System.out.println("Parameters: " + speedelec);
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            String hql = "FROM Speedelec" + buildSpeedelecQuery(speedelec);
+            System.out.println("HQL: " + hql);
+            Query query = session.createQuery(hql);
+            List<Speedelec> bikes = query.list();
+            return bikes;
+        } catch (Exception e) {
+            throw new DataProcessingException("Unable to get speedelecs");
+        }
+    }
+
+    @Override
+    public List<Speedelec> searchFirstSpeedelec(Speedelec speedelec) {
+        System.out.println("Parameters: " + speedelec);
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            String hql = "FROM Speedelec" + buildSpeedelecQuery(speedelec);
+            System.out.println("HQL: " + hql);
+            Query query = session.createQuery(hql).setMaxResults(1);
+            List<Speedelec> bikes = query.list();
+            return bikes;
+        } catch (Exception e) {
+            throw new DataProcessingException("Unable to get speedelec");
+        }
     }
 
     @Override
     public List<Ebike> searchEbike(Ebike ebike) {
-        return null;
+        System.out.println("Parameters: " + ebike);
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            String hql = "FROM Ebike" + buildEbikeQuery(ebike);
+            System.out.println("HQL: " + hql);
+            Query query = session.createQuery(hql);
+            List<Ebike> bikes = query.list();
+            return bikes;
+        } catch (Exception e) {
+            throw new DataProcessingException("Unable to get ebike");
+        }
+    }
+
+    @Override
+    public List<Ebike> searchFirstEbike(Ebike ebike) {
+        System.out.println("Parameters: " + ebike);
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            String hql = "FROM Ebike" + buildEbikeQuery(ebike);
+            System.out.println("HQL: " + hql);
+            Query query = session.createQuery(hql).setMaxResults(1);
+            List<Ebike> bikes = query.list();
+            return bikes;
+        } catch (Exception e) {
+            throw new DataProcessingException("Unable to get ebikes");
+        }
+    }
+
+    private String buildFoldingBikeQuery(FoldingBike foldingBike) {
+        Map<String, Object> meta = new LinkedHashMap<>() {
+            {
+                put("brand", foldingBike.getBrand());
+                put("wheelSize", foldingBike.getWheelSize());
+                put("numberOfGears", foldingBike.getNumberOfGears());
+                put("weight", foldingBike.getWeight());
+                put("lights", foldingBike.hasLights());
+                put("color", foldingBike.getColor());
+                put("price", foldingBike.getPrice());
+            }
+        };
+
+        List<String> properties = new ArrayList<>();
+        meta.forEach((key, value) -> {
+            if (value != null) {
+                properties.add(key + "='" + value + "'");
+            }
+        });
+
+        String result = "";
+        if (properties.size() > 0) {
+            result = String.join(" AND ", properties);
+            result = " WHERE " + result;
+        }
+        return result;
+    }
+
+    private String buildSpeedelecQuery(Speedelec speedelec) {
+        Map<String, Object> meta = new LinkedHashMap<>() {
+            {
+                put("brand", speedelec.getBrand());
+                put("maxSpeed", speedelec.getMaximumSpeed());
+                put("weight", speedelec.getWeight());
+                put("lights", speedelec.hasLights());
+                put("batteryCapacity", speedelec.getBatteryCapacity());
+                put("color", speedelec.getColor());
+                put("price", speedelec.getPrice());
+            }
+        };
+
+        List<String> properties = new ArrayList<>();
+        meta.forEach((key, value) -> {
+            if (value != null) {
+                properties.add(key + "='" + value + "'");
+            }
+        });
+
+        String result = "";
+        if (properties.size() > 0) {
+            result = String.join(" AND ", properties);
+            result = " WHERE " + result;
+        }
+        return result;
+    }
+
+    private String buildEbikeQuery(Ebike ebike) {
+        Map<String, Object> meta = new LinkedHashMap<>() {
+            {
+                put("brand", ebike.getBrand());
+                put("maxSpeed", ebike.getMaximumSpeed());
+                put("weight", ebike.getWeight());
+                put("lights", ebike.hasLights());
+                put("batteryCapacity", ebike.getBatteryCapacity());
+                put("color", ebike.getColor());
+                put("price", ebike.getPrice());
+            }
+        };
+
+        List<String> properties = new ArrayList<>();
+        meta.forEach((key, value) -> {
+            if (value != null) {
+                properties.add(key + "='" + value + "'");
+            }
+        });
+
+        String result = "";
+        if (properties.size() > 0) {
+            result = String.join(" AND ", properties);
+            result = " WHERE " + result;
+        }
+        return result;
+    }
+
+    @Override
+    public List<Object> executeHql(String queryString) {
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            String hql = queryString;
+            Query query = session.createQuery(hql);
+            List<Object> result = query.list();
+            return result;
+        } catch (Exception e) {
+            throw new DataProcessingException("Unable to execute query");
+        }
     }
 }
