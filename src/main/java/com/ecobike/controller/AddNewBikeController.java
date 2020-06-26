@@ -185,6 +185,7 @@ public class AddNewBikeController {
             foldingBike.setPrice(Integer.valueOf(meta.get("price")));
         } catch (Exception e) {
             System.out.println("Entered data is not valid.");
+            return null;
         }
         return foldingBike;
     }
