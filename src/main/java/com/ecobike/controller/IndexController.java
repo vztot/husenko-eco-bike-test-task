@@ -62,8 +62,8 @@ public class IndexController {
     public void init() {
         while (pathToFile == null) {
             System.out.println("Please, enter path to \"ecobike.txt\" (by default enter "
-                    + "\"ecobike.txt\", also you can use absolute path),\n for exit type " +
-                    "\"exit\"");
+                    + "\"ecobike.txt\", also you can use absolute path),\n for exit type "
+                    + "\"exit\"");
             TextTable table = new TextTable(new String[]{"OS", "Path"}, new String[][]
                     {
                             {"Default", "\"ecobike.txt\" (use this project file)"},
