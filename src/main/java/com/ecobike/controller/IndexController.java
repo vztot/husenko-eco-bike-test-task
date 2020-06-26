@@ -21,7 +21,7 @@ import org.apache.log4j.Logger;
 
 @Controller
 public class IndexController {
-    public static String pathToFile = "file/ecobike.txt";
+    public static String pathToFile;
     public static List<String> newLines;
     private static final Logger LOGGER = Logger.getLogger(IndexController.class);
     private static final Map<Integer, Command> COMMAND_MAP;
@@ -62,7 +62,8 @@ public class IndexController {
     public void init() {
         while (pathToFile == null) {
             System.out.println("Please, enter path to \"ecobike.txt\" (by default enter "
-                    + "\"file/ecobike.txt\", also you can use absolute path), for exit type \"q\"");
+                    + "\"ecobike.txt\", also you can use absolute path), for exit type " +
+                    "\"exit\"");
             getPathToFile(new Scanner(System.in));
         }
         lines = FileUtil.read(pathToFile);
@@ -135,7 +136,7 @@ public class IndexController {
     private void getPathToFile(Scanner scanner) {
         if (scanner.hasNextLine()) {
             String path = scanner.nextLine();
-            if (path.equalsIgnoreCase("q")) {
+            if (path.equalsIgnoreCase("exit")) {
                 System.exit(0);
             } else if (Paths.get(path).toFile().exists()
                     && Paths.get(path).toFile().getName().equals("ecobike.txt")) {
