@@ -19,7 +19,7 @@ import java.util.Scanner;
 @Controller
 public class AddNewBikeController {
     private static final Map<String, Command> COMMAND_MAP;
-
+    //fields are static because they are used in the static init block
     private static FoldingBikeService foldingBikeService =
             (FoldingBikeService) AppContext.getInstance().getService(FoldingBikeService.class);
     private static EbikeService ebikeService =

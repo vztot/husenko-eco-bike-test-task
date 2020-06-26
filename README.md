@@ -5,8 +5,8 @@
 This project is my solution of an [EcoBike](doc/TASK.md) test task.
 It implements some typical functions of a CRUD application. After reading a text
 file program records data into H2 sql in-memory db using Hibernate. After this user can view, add
- and save new bikes using JPA. Also, project has dao, service and view layers, IoC (implemented
-  by the custom injector), unit tests, travis and sonar qube code testing tools. Also, in
+ and save new bikes using JPA. Also, project has dao, service and view layers, DI (custom injector
+ , unit tests, travis code testing tools. Also, in
    practice I prefer use lombok but in these project equals, hashcode, getters and setters
     implemented manually.
 
@@ -20,7 +20,6 @@ file program records data into H2 sql in-memory db using Hibernate. After this u
 * Maven Checkstyle Plugin
 * JUnit
 * Travis CI
-* SonarQube
 
 ## For developer
 

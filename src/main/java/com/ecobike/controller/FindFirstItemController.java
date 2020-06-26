@@ -1,6 +1,6 @@
 package com.ecobike.controller;
 
-import com.ecobike.annotation.Service;
+import com.ecobike.annotation.Controller;
 import com.ecobike.context.AppContext;
 import com.ecobike.model.Ebike;
 import com.ecobike.model.FoldingBike;
@@ -14,7 +14,7 @@ import java.util.Map;
 import java.util.Scanner;
 import java.util.stream.Collectors;
 
-@Service
+@Controller
 public class FindFirstItemController {
     private SearchService searchService =
             (SearchService) AppContext.getInstance().getService(SearchService.class);
@@ -86,6 +86,7 @@ public class FindFirstItemController {
 
         FoldingBike foldingBike = new FoldingBike();
 
+        //here is a lot of ternary operators that make null check before parse
         try {
             foldingBike.setBrand(meta.get("brand"));
             foldingBike.setWheelSize(meta.get("wheelSize") == null
@@ -134,7 +135,7 @@ public class FindFirstItemController {
         });
 
         Speedelec speedelec = new Speedelec();
-
+        //here is a lot of ternary operators that make null check before parse
         try {
             speedelec.setBrand(meta.get("brand"));
             speedelec.setMaximumSpeed(meta.get("maxSpeed") == null ? null
@@ -183,6 +184,7 @@ public class FindFirstItemController {
         });
 
         Ebike ebike = new Ebike();
+        //here is a lot of ternary operators that make null check before parse
         try {
             ebike.setBrand(meta.get("brand"));
             ebike.setMaximumSpeed(meta.get("maxSpeed") == null ? null

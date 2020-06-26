@@ -15,6 +15,7 @@ public class ExitController {
                 FileUtil.writeAppend(IndexController.pathToFile, lines);
             }
         }
+        System.out.println("Changes saved successfully.");
         System.out.println("Goodbye!");
         System.exit(0);
     }
